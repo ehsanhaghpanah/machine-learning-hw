@@ -1,0 +1,1 @@
+Derivatives Analysis (Projects, Samples and Homeworks), Data Science and Algorithmic Trading MBA (Queen Farah Pahlavi University)
