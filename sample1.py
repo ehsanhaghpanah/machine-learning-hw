@@ -22,3 +22,5 @@ try:
 except Exception as p:
      print(f'error = {p.args}')
      pass
+
+# %%
