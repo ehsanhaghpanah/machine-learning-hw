@@ -55,7 +55,3 @@ def drawFinalTable() -> None:
      display(df)
 
 X = getDataSet()
-
-# %%
-
-# %%
