@@ -11,6 +11,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LinearRegression
 from sklearn.linear_model import Ridge
 from sklearn.linear_model import Lasso
+from sklearn.metrics import mean_squared_error
 
 #
 def calc_lr(xTrainSet, yTrainSet, xTestSet, yTestSet, verbose: bool = False) -> tuple:
@@ -87,6 +88,25 @@ def calc_lasso_1se(xTrainSet, yTrainSet, xTestSet, yTestSet, verbose: bool = Fal
           print(f'error {inspect.stack()[0][3]}, -> {p.args}')
           return (None, None)
 
+#
+def predict_lr(xTrainSet, yTrainSet, xTestSet, yTestSet, verbose: bool = False) -> tuple:
+     try:
+          model: LinearRegression = LinearRegression().fit(xTrainSet, yTrainSet)
+          
+          score_train = model.score(xTrainSet, yTrainSet)
+          score_test = model.score(xTestSet, yTestSet)
+
+          if (verbose):
+               print(f'beta0 = {model.intercept_}')
+               print(f'beta* = {model.coef_}')
+               print(f'score for trian set = {score_train}')
+               print(f'score for test set  = {score_test}')
+
+          return (score_train, score_test)
+     except Exception as p:
+          print(f'error {inspect.stack()[0][3]}, -> {p.args}')
+          return (None, None)
+
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 try:
@@ -114,7 +134,7 @@ try:
      X = SelectKBest(f_regression, k= 5).fit_transform(X, y)
 
      # splitting (or folding) X
-     # folding into {traing set} and {validation set}
+     # folding into {training set} and {validation set}
      X_train, X_test, y_train, y_test = train_test_split(X, y, test_size= 0.5, random_state= 1)
 
      # calculating models parameters for comparison
@@ -126,5 +146,8 @@ try:
 except Exception as p:
      print(f'error {inspect.stack()[0][3]}, -> {p.args}')
      pass
+
+# https://www.pluralsight.com/guides/linear-lasso-ridge-regression-scikit-learn
+
 
 # %%
