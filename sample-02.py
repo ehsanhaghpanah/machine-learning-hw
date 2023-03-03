@@ -126,3 +126,5 @@ try:
 except Exception as p:
      print(f'error {inspect.stack()[0][3]}, -> {p.args}')
      pass
+
+# %%
