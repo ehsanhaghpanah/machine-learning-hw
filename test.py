@@ -189,13 +189,23 @@ try:
           lasso_mspes.append(lasso_args[0])
           lasso_nfeat.append(lasso_args[1])
 
-     # drawing
-     pl.plot(ridge_mspes, 'r')
-     pl.plot(lasso_mspes, 'b')
-     pl.xlabel('Pricipal Components Count')
-     pl.ylabel('MSPE')
-     pl.grid()
-     pl.show()
+     # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+     print(ridge_mspes)
+     print(lasso_mspes)
+          
+     # #
+     # # calculating RMSPE(s) and drawing boxplots
+     # rmspe_ridge = ridge_mspes / min(ridge_mspes)
+     # rmspe_lasso = lasso_mspes / min(lasso_mspes)
+     # rmspe_pcr   = pcr_mspes / min(pcr_mspes)
+     # rmspes = [rmspe_ridge, rmspe_lasso, rmspe_pcr]
+
+     # fg = pl.figure()
+     # ax = fg.add_axes([0, 0, 1, 1])
+     # ax.boxplot(rmspes)
+     # ax.set_xticklabels(['Ridge', 'LASSO', 'PCR'])
+     # pl.show()
 
 except Exception as p:
      print(f'error {inspect.stack()[0][3]}, -> {p.args}')
