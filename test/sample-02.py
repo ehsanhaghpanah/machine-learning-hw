@@ -128,3 +128,21 @@ except Exception as p:
      pass
 
 # %%
+
+def foo(s: set) -> None:
+     s.add('NEW')
+
+ss = {'OLD'}
+print(ss)
+foo(ss)
+print(ss)
+
+
+
+# %%
+
+# %%
+
+# %%
+
+# %%
